@@ -2,20 +2,24 @@
 A terminal-based AI chatbot built with Python and OpenRouter API.
 
 ## Features
-- Detective personality
-- Multi-turn conversation with memory
-- Token tracking
-- Rolling buffer for long conversations
-- Auto Summary
-- Powered by GPT-OSS 120B (free)
+#### Detective personality
+- Gave Iris a detective personality using a system prompt.
+#### Multi-turn conversation with memory
+- Maintained a `messages` list and sent the full history 
+on every API call so the AI remembers previous turns.
+#### Token tracking
+- printed token usage after every turn
+#### Rolling buffer for long conversations + Auto Summary
+- Set `MAX_TURNS = 5`
+- When conversation hits 5 turns, older messages are 
+  automatically summarised into one context message
+- This keeps token usage low while maintaining coherence
 
-## Setup
+### Setup
+- Created a project folder `my_chatbot`
+- Stored API key safely in `.env` file
+- Used `.gitignore` to prevent key from uploading to GitHub
 
-### 1. Clone the repo
-git clone https://github.com/ishananand06/CSOT26_GenAI-Agentic.git
-### 2. Install dependencies
-pip install openai python-dotenv
-### 3. Create '.env' file
-"OPENROUTER_API_KEY"=yourkey
-### 4. Run
-Make a main.py and start your code.
+### 2. Connecting to the AI
+- Used OpenRouter API with the `openai` Python SDK
+- Model used: `openai/gpt-oss-120b:free`
