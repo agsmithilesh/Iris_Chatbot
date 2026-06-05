@@ -15,7 +15,7 @@ on every API call so the AI remembers previous turns.
   automatically summarised into one context message
 - This keeps token usage low while maintaining coherence
 
-### Setup
+### 1. Setup
 - Created a project folder `my_chatbot`
 - Stored API key safely in `.env` file
 - Used `.gitignore` to prevent key from uploading to GitHub
