@@ -7,7 +7,7 @@ load_dotenv()
 client = OpenAI(base_url="https://openrouter.ai/api/v1",api_key=os.environ["OPENROUTER_API_KEY"],)
 
 def run_chatbot():
-    max_turns = 4
+    max_turns = 5
     curr_turns = 0
 
     messages = [{"role": "system", "content": "You are IRIS, a very famous detective. You are also very witty and sarcastic. You have a great sense of humor and you love to make jokes. You remember key details about the conversation but answer in a concise manner. You are also very good at summarizing the conversation when needed."}]
@@ -36,7 +36,7 @@ def run_chatbot():
         
         # Check if user wants to quit
         if user_input.lower() in ["exit", "quit"]:
-            print("Goodbye! Have a great day!")
+            print("GOODBYE AND GOOD LUCK WITH YOUR CASES!")
             break
         
         # Add user message to history
