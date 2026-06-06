@@ -32,7 +32,6 @@ def run_chatbot():
                 print(f"WARNING: YOU HAVE USED {percent}% OF YOUR TURNS. PLEASE CONSIDER STARTING A NEW CONVERSATION OTHERWISE THE MODEL MAY NOT BE ABLE TO RESPOND PROPERLY.")
 
         user_input = input("You: ")
-        
         if user_input.lower() in ["exit", "quit"]:
             print("GOODBYE AND GOOD LUCK WITH YOUR CASES!")
             break
