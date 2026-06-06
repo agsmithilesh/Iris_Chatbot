@@ -31,34 +31,26 @@ def run_chatbot():
             if(percent >= 60):
                 print(f"WARNING: YOU HAVE USED {percent}% OF YOUR TURNS. PLEASE CONSIDER STARTING A NEW CONVERSATION OTHERWISE THE MODEL MAY NOT BE ABLE TO RESPOND PROPERLY.")
 
-        # Get user input
         user_input = input("You: ")
         
-        # Check if user wants to quit
         if user_input.lower() in ["exit", "quit"]:
             print("GOODBYE AND GOOD LUCK WITH YOUR CASES!")
             break
         
-        # Add user message to history
         messages.append({"role": "user", "content": user_input})
 
-        # Send full history to AI
+
         response = client.chat.completions.create(model="openai/gpt-oss-120b:free", messages=messages)
 
-        # Tokens tracking
         total = response.usage.total_tokens
 
-        # Get AI reply
         reply = response.choices[0].message.content
         
-        # Add AI reply to history
         messages.append({"role": "assistant", "content": reply})
 
-        # Print AI reply
         print(f"AI: {reply}")
         curr_turns += 1
         print(f"Tokens used - Total: {total}")
         print("-" * 40)
 
-# Run it!
 run_chatbot()
