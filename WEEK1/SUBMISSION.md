@@ -1,4 +1,4 @@
-# Iris Chatbot 
+# IRIS (Week-1)
 A terminal-based AI chatbot built with Python and OpenRouter API.
 
 ## Features
