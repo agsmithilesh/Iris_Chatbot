@@ -107,7 +107,7 @@ TOOLS = [
             "name": "write_file",     # WRITE FILE
             "description": (
                 "writes content to a file on disk"
-                "Whenever asked to write something in a file or create a new file, STRICTLY USE WRITE_FILE."
+                "Whenever asked to write something in a file or create a new file, STRICTLY USE WRITE_FILE TOOL."
                 "Returns a dictionary in the format {'success':..., 'path':..., 'bytes':...}"
             ),
             "parameters": {
@@ -251,7 +251,7 @@ class ChatApp(App):
             {"role": "system", "content": "You are a helpful assistant." "Use tools when appropriate."
                         "For finding research papers, always use discover_papers tool, not web_search."
                         "If user has asked about research papers, do not do web_search. Use discover_papers and get_paper_content. get_paper_content should always be called after discover_papers."
-                        "If asked to write in a file or create a file, you will STRICTLY USE WRITE_FILE"}
+                        "If asked to write in a file or create a file, you will STRICTLY USE WRITE_FILE TOOL. You can use it after getting the content to write in the file."}
         ]
 
     def compose(self) -> ComposeResult:
@@ -288,7 +288,8 @@ class ChatApp(App):
             self.messages.append({"role": "assistant", "content": reply})
             self.call_from_thread(log.write, f"[bold green][Agent][/bold green] {reply}\n")
         except Exception as e:
-            self.call_from_thread(log.write, f"[bold red]ERROR:[/bold red] {str(e)}\n")
+            import traceback
+            self.call_from_thread(log.write, f"[bold red]ERROR:[/bold red] {traceback.format_exc()}\n")
 
     # -----------------------------------------------------------------------
     # Actions (bound to keyboard shortcuts)
