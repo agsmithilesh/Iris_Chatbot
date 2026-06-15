@@ -157,14 +157,14 @@ def web_search(query):
 def read_file(path):
     try:
         file = open(path,"r",encoding="utf-8")
-        data = file.read()    # READ FILE
+        data = file.read()                        # READ FILE
         return {"content":data, "path" : path}
     except:
         return {"error": "The file can't be read"}
 
 def write_file(path , content):
     try:
-        file = open(path,"w",encoding="utf-8")    # WRITE FILE
+        file = open(path,"w",encoding="utf-8")          # WRITE FILE
         file.write(content)
         return {"success":True, "path":path, "Bytes":len(content)}
     except Exception as e:
@@ -172,8 +172,8 @@ def write_file(path , content):
     
 def web_fetch(url):
     headers = {"User-Agent": "Mozilla/5.0 (compatible; ResearchBot/1.0)"}
-    response = requests.get(url, headers=headers,timeout=10)    # WEB FETCH
-    response.raise_for_status()
+    response = requests.get(url, headers=headers,timeout=10)
+    response.raise_for_status()                                  # WEB FETCH
     return response.text
 
 def fetch_clean(url):
@@ -251,7 +251,7 @@ class ChatApp(App):
             {"role": "system", "content": "You are a helpful assistant." "Use tools when appropriate."
                         "For finding research papers, always use discover_papers tool, not web_search."
                         "If user has asked about research papers, do not do web_search. Use discover_papers and get_paper_content. get_paper_content should always be called after discover_papers."
-                        "If asked to write in a file or create a file, you will STRICTLY USE WRITE_FILE TOOL. You can use it after getting the content to write in the file."}
+                        "If asked to write in a file or create a file, you will STRICTLY USE WRITE_FILE TOOL."}
         ]
 
     def compose(self) -> ComposeResult:
@@ -288,8 +288,7 @@ class ChatApp(App):
             self.messages.append({"role": "assistant", "content": reply})
             self.call_from_thread(log.write, f"[bold green][Agent][/bold green] {reply}\n")
         except Exception as e:
-            import traceback
-            self.call_from_thread(log.write, f"[bold red]ERROR:[/bold red] {traceback.format_exc()}\n")
+            self.call_from_thread(log.write, f"[bold red]ERROR:[/bold red] {str(e)}")
 
     # -----------------------------------------------------------------------
     # Actions (bound to keyboard shortcuts)
@@ -388,6 +387,6 @@ if __name__ == "__main__":
     ChatApp().run()
     test_queries = [
         "What were the main announcements at Google I/O 2024?",
-        "Find recent papers on chain-of-thought prompting and create and write the key findings in a file named research.txt.",
+        "Find recent papers on chain-of-thought prompting then create and write the key findings in a new file named research.txt.",
         "What is llms.txt and which major websites have adopted it?."
     ]
