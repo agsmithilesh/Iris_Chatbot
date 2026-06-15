@@ -107,13 +107,13 @@ def run_agent(user_message):
             print (f"[Agent stopped after {MAX_ITERATIONS} iterations]")
 
 if __name__ == "__main__":
-    with open("sample.txt", "w") as f:
+    with open("build1_sample.txt", "w") as f:
         f.write("IIT Delhi was established in 1961. It is one of the premier engineering institutions in India.\n")
         f.write("The campus spans 325 acres in Hauz Khas, New Delhi.\n")
 
     test_queries = [
-        "Read sample_build1.txt and summarise what it says.",
-        "Read sample_build1.txt and write a one-sentence version of its content to summary.txt.",
+        "Read build1_sample.txt and summarise what it says.",
+        "Read build1_sample.txt and write a one-sentence version of its content to summary.txt.",
     ]
 
     for query in test_queries:
